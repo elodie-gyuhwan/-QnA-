@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="수업 질문과 교사 답변을 위한 Q&A 게시판">
+  <title>Class Q&A | 질문 게시판</title>
+  <style>
+    :root{color-scheme:light;font-family:Pretendard,"Noto Sans KR",system-ui,-apple-system,sans-serif;color:#15253e;background:#f5f7fb}
+    *{box-sizing:border-box}body{margin:0}.wrap{max-width:780px;margin:auto;padding:48px 20px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:28px}
+    h1{margin:0;font-size:30px;letter-spacing:-1px}.sub{margin:10px 0 0;color:#607089;font-size:15px}
+    .pill{background:#e8f4ec;color:#256342;border-radius:999px;padding:9px 13px;font-weight:700;font-size:12px;white-space:nowrap}
+    .panel{background:white;border:1px solid #e4e9f1;border-radius:20px;padding:28px;box-shadow:0 10px 30px #162b4a0a}
+    .banner{background:#edf3ff;border-radius:13px;padding:16px 18px;color:#35577e;font-size:14px;margin-bottom:23px;line-height:1.65}
+    h2{font-size:19px;margin:0 0 10px}.description{color:#607089;font-size:14px;margin:0 0 20px;line-height:1.7}
+    label{font-size:14px;font-weight:700;display:block;margin:14px 0 7px}
+    input,textarea{width:100%;border:1px solid #d8e0eb;border-radius:10px;padding:13px 14px;font:inherit;background:#fcfdff}textarea{min-height:110px;resize:vertical}
+    button{border:0;background:#2557cc;color:white;padding:14px 20px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;margin-top:18px}
+    button:disabled{background:#abb8d1;cursor:not-allowed}hr{border:0;border-top:1px solid #edf0f5;margin:28px 0}
+    .empty{padding:24px;text-align:center;background:#f7f9fc;border-radius:12px;color:#71809a;font-size:14px}
+    footer{text-align:center;color:#8994a7;font-size:12px;margin-top:24px}
+    @media(max-width:560px){.wrap{padding:26px 14px}h1{font-size:25px}.panel{padding:20px}header{align-items:flex-start}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header><div><h1>Class Q&A</h1><p class="sub">수업 질문 게시판 · 궁금한 점을 자유롭게 남겨주세요.</p></div><span class="pill">로그인 불필요</span></header>
+    <div class="panel">
+      <div class="banner">✅ 첫 화면 설치가 완료되었습니다! 다음 단계에서 Supabase를 연결하면 질문 등록과 교사 답변이 활성화됩니다.</div>
+      <h2>질문 작성</h2><p class="description">질문은 모든 방문자에게 공개될 예정입니다. 이름, 연락처 등 개인정보는 입력하지 마세요.</p>
+      <form id="questionForm"><label for="nickname">닉네임</label><input id="nickname" placeholder="예: 학생1" autocomplete="off" disabled>
+        <label for="title">질문 제목</label><input id="title" placeholder="질문 제목을 입력하세요" disabled>
+        <label for="content">질문 내용</label><textarea id="content" placeholder="질문 내용을 입력하세요" disabled></textarea>
+        <button disabled type="submit">질문 등록 (연결 준비 중)</button>
+      </form>
+      <hr><h2>질문 목록</h2><div class="empty">아직 등록된 질문이 없습니다.<br>다음 단계에서 데이터베이스를 연결합니다.</div>
+    </div>
+    <footer>Class Q&A · 수업용 공개 질문 게시판</footer>
+  </main>
+</body>
+</html>
