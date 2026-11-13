@@ -1,42 +1,63 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="수업 질문과 교사 답변을 위한 Q&A 게시판">
-  <title>Class Q&A | 질문 게시판</title>
-  <style>
-    :root{color-scheme:light;font-family:Pretendard,"Noto Sans KR",system-ui,-apple-system,sans-serif;color:#15253e;background:#f5f7fb}
-    *{box-sizing:border-box}body{margin:0}.wrap{max-width:780px;margin:auto;padding:48px 20px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:28px}
-    h1{margin:0;font-size:30px;letter-spacing:-1px}.sub{margin:10px 0 0;color:#607089;font-size:15px}
-    .pill{background:#e8f4ec;color:#256342;border-radius:999px;padding:9px 13px;font-weight:700;font-size:12px;white-space:nowrap}
-    .panel{background:white;border:1px solid #e4e9f1;border-radius:20px;padding:28px;box-shadow:0 10px 30px #162b4a0a}
-    .banner{background:#edf3ff;border-radius:13px;padding:16px 18px;color:#35577e;font-size:14px;margin-bottom:23px;line-height:1.65}
-    h2{font-size:19px;margin:0 0 10px}.description{color:#607089;font-size:14px;margin:0 0 20px;line-height:1.7}
-    label{font-size:14px;font-weight:700;display:block;margin:14px 0 7px}
-    input,textarea{width:100%;border:1px solid #d8e0eb;border-radius:10px;padding:13px 14px;font:inherit;background:#fcfdff}textarea{min-height:110px;resize:vertical}
-    button{border:0;background:#2557cc;color:white;padding:14px 20px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;margin-top:18px}
-    button:disabled{background:#abb8d1;cursor:not-allowed}hr{border:0;border-top:1px solid #edf0f5;margin:28px 0}
-    .empty{padding:24px;text-align:center;background:#f7f9fc;border-radius:12px;color:#71809a;font-size:14px}
-    footer{text-align:center;color:#8994a7;font-size:12px;margin-top:24px}
-    @media(max-width:560px){.wrap{padding:26px 14px}h1{font-size:25px}.panel{padding:20px}header{align-items:flex-start}}
-  </style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Class Q&A | 수업 질문 게시판</title>
+<style>
+:root{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:#17243b;background:#f5f7fb;font-synthesis:none}*{box-sizing:border-box}body{margin:0}.wrap{max-width:960px;margin:auto;padding:26px 18px 70px}header{background:linear-gradient(120deg,#233b76,#4967b9);color:#fff;padding:40px 0}header h1{font-size:clamp(28px,4vw,42px);margin:7px 0}header p{opacity:.86;margin:0}.eyebrow{font-size:12px;letter-spacing:2px;font-weight:800;color:#dbe7ff}.card{background:white;border:1px solid #e1e6f1;border-radius:16px;padding:24px;box-shadow:0 8px 24px #2434610b;margin-top:20px}.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.hint{color:#647087;font-size:13px;line-height:1.65}.muted{color:#6b7488}.pill{display:inline-block;padding:4px 10px;border-radius:30px;background:#e8efff;color:#3659aa;font-size:12px;font-weight:700}.pending{background:#fff0cc;color:#8b5b00}.rejected{background:#ffe9e9;color:#a83d3d}label{display:block;font-weight:700;margin:14px 0 7px;font-size:14px}input,textarea,select{width:100%;border:1px solid #cdd5e4;border-radius:9px;padding:12px;font:inherit;background:white;color:inherit}textarea{resize:vertical;min-height:125px}button{border:0;border-radius:9px;background:#3658ac;color:white;padding:11px 16px;font:inherit;font-weight:700;cursor:pointer}button:hover{filter:brightness(.95)}button:disabled{opacity:.5;cursor:not-allowed}.secondary{background:#eaf0fc;color:#294d99}.danger{background:#fae7e8;color:#a63a43}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}.question{padding:17px 0;border-top:1px solid #e7ecf5}.question:first-child{border-top:0}.qtop{display:flex;gap:12px;justify-content:space-between;align-items:start}.qtop h3{margin:0 0 8px;font-size:17px}.answer{background:#f0f5ff;border-radius:10px;padding:12px;margin-top:13px;white-space:pre-wrap;line-height:1.6}.bodytext{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.7}.msg{min-height:22px;font-size:13px;margin-top:12px;color:#3559a6}.error{color:#aa3434}.toprow{display:flex;gap:8px;align-items:center;justify-content:space-between}.hide{display:none!important}footer{margin-top:25px;color:#7b8496;text-align:center;font-size:12px}.answeredit{min-height:80px}#adminPanel .question{background:#fafbfe;border:1px solid #e5e9f2;border-radius:12px;padding:15px;margin:10px 0}@media(max-width:700px){.grid{grid-template-columns:1fr}.card{padding:18px}header{padding:30px 0}}
+</style>
 </head>
 <body>
-  <main class="wrap">
-    <header><div><h1>Class Q&A</h1><p class="sub">수업 질문 게시판 · 궁금한 점을 자유롭게 남겨주세요.</p></div><span class="pill">로그인 불필요</span></header>
-    <div class="panel">
-      <div class="banner">✅ 첫 화면 설치가 완료되었습니다! 다음 단계에서 Supabase를 연결하면 질문 등록과 교사 답변이 활성화됩니다.</div>
-      <h2>질문 작성</h2><p class="description">질문은 모든 방문자에게 공개될 예정입니다. 이름, 연락처 등 개인정보는 입력하지 마세요.</p>
-      <form id="questionForm"><label for="nickname">닉네임</label><input id="nickname" placeholder="예: 학생1" autocomplete="off" disabled>
-        <label for="title">질문 제목</label><input id="title" placeholder="질문 제목을 입력하세요" disabled>
-        <label for="content">질문 내용</label><textarea id="content" placeholder="질문 내용을 입력하세요" disabled></textarea>
-        <button disabled type="submit">질문 등록 (연결 준비 중)</button>
-      </form>
-      <hr><h2>질문 목록</h2><div class="empty">아직 등록된 질문이 없습니다.<br>다음 단계에서 데이터베이스를 연결합니다.</div>
-    </div>
-    <footer>Class Q&A · 수업용 공개 질문 게시판</footer>
-  </main>
-</body>
-</html>
+<header><div class="wrap" style="padding-top:0;padding-bottom:0"><div class="eyebrow">STUDENT QUESTION CENTER</div><h1>Class Q&A</h1><p>궁금한 점을 자유롭게 질문하고, 선생님의 답변을 확인하세요.</p></div></header>
+<main class="wrap">
+<section id="setupWarning" class="card" style="border-color:#e5b96e;background:#fff9ef"><strong>사이트 연결 설정이 필요합니다.</strong><p class="hint">index.html 맨 아래 SUPABASE_URL 및 SUPABASE_PUBLISHABLE_KEY를 자신의 Supabase 프로젝트 값으로 바꾼 뒤 GitHub에 저장해 주세요.</p></section>
+<div class="grid">
+ <section class="card"><div class="toprow"><h2 style="margin:0">질문 작성</h2><span class="pill">로그인 불필요</span></div><p class="hint">실명·연락처 등 개인정보는 쓰지 마세요. 질문은 선생님이 승인한 뒤 공개됩니다.</p>
+ <form id="questionForm"><label for="name">닉네임</label><input id="name" maxlength="30" required placeholder="예: 학생1"><label for="title">질문 제목</label><input id="title" maxlength="150" required placeholder="궁금한 점을 짧게 적어주세요"><label for="body">질문 내용</label><textarea id="body" maxlength="5000" required placeholder="질문 내용을 구체적으로 적어주세요"></textarea><div class="actions"><button id="submitBtn" type="submit">질문 제출하기</button></div><div id="submitMsg" class="msg" role="status"></div></form></section>
+ <section class="card"><h2 style="margin:0 0 12px">이용 안내</h2><p class="hint">① 질문을 작성해 주세요.<br>② 선생님이 적절한 질문인지 확인합니다.<br>③ 승인된 질문과 답변은 아래 목록에 공개됩니다.</p><p class="hint">학생의 질문은 익명에 가까운 닉네임 방식이므로 개인 상담이나 성적처럼 민감한 내용은 별도로 문의해 주세요.</p><hr style="border:0;border-top:1px solid #e6eaf2;margin:20px 0"><details><summary style="cursor:pointer;font-weight:700">교사용 관리자 로그인</summary><form id="loginForm"><label for="adminEmail">이메일</label><input id="adminEmail" type="email" autocomplete="username" required><label for="adminPw">비밀번호</label><input id="adminPw" type="password" autocomplete="current-password" required><div class="actions"><button type="submit">로그인</button></div><div id="loginMsg" class="msg" role="status"></div></form><div id="loggedIn" class="hide"><p class="hint" id="adminLabel"></p><button id="logoutBtn" type="button" class="secondary">로그아웃</button></div></details></section>
+</div>
+<section class="card"><div class="toprow"><h2 style="margin:0">공개 Q&A</h2><button class="secondary" id="refreshBtn" type="button">새로고침</button></div><label for="search">질문 검색</label><input id="search" placeholder="제목 또는 질문 내용 검색"><div id="publicMsg" class="msg" role="status"></div><div id="publicList"></div></section>
+<section class="card hide" id="adminPanel"><div class="toprow"><h2 style="margin:0">관리자: 질문 검토·답변</h2><button class="secondary" type="button" id="adminRefresh">새로고침</button></div><p class="hint">대기·승인·반려 질문을 모두 확인할 수 있습니다. 승인 전에는 학생에게 노출되지 않습니다.</p><div id="adminMsg" class="msg" role="status"></div><div id="adminList"></div></section>
+<footer>Powered by GitHub Pages & Supabase · 수업용 Q&A</footer>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// ★ 이 두 값만 자신의 Supabase 설정으로 변경하세요.
+const SUPABASE_URL = 'https://nawkmncljvuzjeijlzmo.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_CJWM95gRdxYwRsYfjR0MKw_68tuIzq0';
+
+const $=id=>document.getElementById(id);
+const configured=SUPABASE_URL.startsWith('https://') && SUPABASE_PUBLISHABLE_KEY!=='PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE';
+let db=null,publicRows=[];
+function say(id,text,error=false){$(id).textContent=text;$(id).className='msg'+(error?' error':'');}
+function elt(tag,cls,text){const x=document.createElement(tag);if(cls)x.className=cls;if(text!==undefined)x.textContent=text;return x;}
+function showTime(raw){return new Date(raw).toLocaleString('ko-KR',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});}
+function addQuestion(container,q,admin=false){
+ const box=elt('article','question');const top=elt('div','qtop'),lhs=elt('div');lhs.append(elt('h3','',q.title));lhs.append(elt('div','hint',`${q.author_name} · ${showTime(q.created_at)}`));top.append(lhs);
+ const state=q.status==='approved'?(q.answer?'답변완료':'답변대기'):q.status==='rejected'?'반려':'승인대기';top.append(elt('span','pill '+(q.status==='pending'?'pending':q.status==='rejected'?'rejected':''),state));box.append(top,elt('p','bodytext',q.body));
+ if(q.answer){const ans=elt('div','answer');ans.append(elt('strong','', '교사 답변'));ans.append(elt('div','bodytext',q.answer));box.append(ans);}
+ if(admin){const label=elt('label','','교사 답변 (선택 사항)');const textarea=elt('textarea','answeredit');textarea.value=q.answer||'';textarea.maxLength=5000;const buttons=elt('div','actions');
+ for(const [status,txt,cls] of [['approved','승인 / 답변 저장',''],['rejected','반려','danger'],['pending','승인대기로 변경','secondary']]){const b=elt('button',cls,txt);b.type='button';b.onclick=async()=>{const answer=textarea.value.trim();if(answer.length>5000)return alert('답변은 5000자 이내로 작성해 주세요.');b.disabled=true;try{const changes={status,answer:answer||null,answered_at:answer?new Date().toISOString():null};const {error}=await db.from('questions').update(changes).eq('id',q.id);if(error)throw error;say('adminMsg','변경사항이 저장되었습니다.');await Promise.all([loadAdmin(),loadPublic()]);}catch(e){say('adminMsg',e.message,true);}finally{b.disabled=false;}};buttons.append(b);}box.append(label,textarea,buttons);}
+ container.append(box);
+}
+async function loadPublic(){if(!db)return; say('publicMsg','질문 목록을 불러오는 중...');const {data,error}=await db.from('questions').select('id,author_name,title,body,answer,created_at,answered_at,status').eq('status','approved').order('created_at',{ascending:false}).limit(100);if(error){say('publicMsg','불러오기 실패: '+error.message,true);return;}publicRows=data||[];renderPublic();}
+function renderPublic(){const term=$('search').value.toLocaleLowerCase().trim();const rows=publicRows.filter(q=>[q.title,q.body,q.answer||''].some(s=>s.toLocaleLowerCase().includes(term)));$('publicList').replaceChildren();say('publicMsg',rows.length?`${rows.length}개의 공개 질문`:'표시할 질문이 없습니다.');rows.forEach(q=>addQuestion($('publicList'),q));}
+async function loadAdmin(){if(!db)return;const {data:{user},error:authError}=await db.auth.getUser();if(authError||!user){$('adminPanel').classList.add('hide');return;}
+ const {data,error}=await db.from('questions').select('id,author_name,title,body,answer,created_at,answered_at,status').order('created_at',{ascending:false}).limit(200);
+ if(error){say('adminMsg',error.message,true);return;}
+ // A non-teacher authenticated account only gets approved rows through RLS.
+ // Never display admin controls unless the current user can read a pending row,
+ // or the teacher passes the explicitly configured admin UID check below.
+ const adminUid=ADMIN_USER_UID.trim();if(!adminUid||user.id!==adminUid){$('adminPanel').classList.add('hide');return;}
+ $('adminPanel').classList.remove('hide');$('adminList').replaceChildren();const rows=data||[];say('adminMsg',`${rows.length}개 질문 (최신 200개)`);rows.forEach(q=>addQuestion($('adminList'),q,true));
+}
+// ★ 위 SQL에 사용한 교사 UID를 여기에 붙여 넣으세요 (화면 표시용 보조 검사).
+// 실제 승인·답변 권한은 Supabase RLS에서 최종 검사합니다.
+const ADMIN_USER_UID='342c4b80-baca-40df-818a-f975bd9ba7e6';
+async function updateSession(){if(!db)return;const {data:{user}}=await db.auth.getUser();$('loginForm').classList.toggle('hide',!!user);$('loggedIn').classList.toggle('hide',!user);$('adminLabel').textContent=user?'로그인됨: '+user.email:'';if(user && user.id===ADMIN_USER_UID){await loadAdmin();}else{$('adminPanel').classList.add('hide');}}
+$('questionForm').addEventListener('submit',async event=>{event.preventDefault();if(!db)return say('submitMsg','Supabase 연결 설정이 필요합니다.',true);const b=$('submitBtn');b.disabled=true;say('submitMsg','질문을 등록하는 중...');try{const payload={author_name:$('name').value.trim(),title:$('title').value.trim(),body:$('body').value.trim()};if(!payload.author_name||!payload.title||!payload.body)throw Error('모든 항목을 작성하세요.');const {error}=await db.from('questions').insert(payload);if(error)throw error;$('questionForm').reset();say('submitMsg','질문이 접수됐습니다. 선생님 승인 후 공개됩니다.');}catch(e){say('submitMsg','질문 제출 실패: '+e.message,true);}finally{b.disabled=false;}});
+$('loginForm').addEventListener('submit',async event=>{event.preventDefault();if(!db)return; say('loginMsg','로그인 중...');const {error}=await db.auth.signInWithPassword({email:$('adminEmail').value.trim(),password:$('adminPw').value});$('adminPw').value='';if(error)return say('loginMsg','로그인 실패: '+error.message,true);say('loginMsg','');await updateSession();});
+$('logoutBtn').onclick=async()=>{await db.auth.signOut();await updateSession();};$('refreshBtn').onclick=loadPublic;$('adminRefresh').onclick=loadAdmin;$('search').oninput=renderPublic;
+if(configured){$('setupWarning').classList.add('hide');db=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);db.auth.onAuthStateChange(()=>setTimeout(updateSession,0));loadPublic();updateSession();}else{say('publicMsg','Supabase 연결 정보를 입력하면 목록이 표시됩니다.');}
+</script>
+</body></html>
